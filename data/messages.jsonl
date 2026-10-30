@@ -1,0 +1,27 @@
+{"message": "Bonjour, je voudrais un rendez-vous pour une vidange de ma Clio AB-123-CD, plutôt jeudi. Mon numéro : 06 12 34 56 78.", "intent": "rdv", "manquant": []}
+{"message": "Salut, vous auriez un créneau samedi pour changer mes plaquettes ? Ma voiture c'est la EF-456-GH, contact : paul@exemple.fr", "intent": "rdv", "manquant": []}
+{"message": "Bonjour, je souhaite prendre rendez-vous pour le contrôle technique de ma Golf.", "intent": "rdv", "manquant": ["immatriculation", "jour", "contact"]}
+{"message": "Dispo mardi pour une révision ? Appelez-moi au 07 98 76 54 32.", "intent": "rdv", "manquant": ["immatriculation"]}
+{"message": "Bonjour, j'aimerais réserver pour un diagnostic, voiture IJ-789-KL, vous pouvez me joindre sur marie@exemple.fr", "intent": "rdv", "manquant": ["jour"]}
+{"message": "Pouvez-vous me donner un créneau demain ?", "intent": "rdv", "manquant": ["prestation", "immatriculation", "contact"]}
+{"message": "Bonjour, combien coûte un changement de pneus sur MN-321-OP ? Mon mail : lea@exemple.fr", "intent": "devis", "manquant": []}
+{"message": "Un devis pour l'embrayage de ma Mégane svp, merci. Tel 06 11 22 33 44", "intent": "devis", "manquant": ["immatriculation"]}
+{"message": "Quel est le prix d'une vidange ?", "intent": "devis", "manquant": ["immatriculation", "contact"]}
+{"message": "Bonjour, je voudrais un devis pour la distribution de QR-654-ST. Cordialement, Karim — 06.55.44.33.22", "intent": "devis", "manquant": []}
+{"message": "Je cherche un tarif pour la climatisation, ma voiture est en UV-111-WX.", "intent": "devis", "manquant": ["contact"]}
+{"message": "Quels sont vos horaires le samedi ?", "intent": "info", "manquant": []}
+{"message": "Bonjour, êtes-vous ouverts pendant les vacances ?", "intent": "info", "manquant": []}
+{"message": "Vous acceptez le paiement en trois fois ?", "intent": "info", "manquant": []}
+{"message": "Où se trouve le garage exactement, et y a-t-il un parking ?", "intent": "info", "manquant": []}
+{"message": "Ma voiture ne démarre plus, elle est devant chez moi. Rappelez-moi vite au 06 10 20 30 40", "intent": "urgence", "manquant": []}
+{"message": "Voyant rouge allumé sur l'autoroute, je suis à l'arrêt, besoin d'un remorquage.", "intent": "urgence", "manquant": ["telephone"]}
+{"message": "Panne de batterie ce matin, urgent, mon numéro 07 01 02 03 04. Je voudrais aussi un rendez-vous.", "intent": "urgence", "manquant": []}
+{"message": "Bonjour, accident hier soir, le pare-chocs est enfoncé. Je peux passer quand ?", "intent": "urgence", "manquant": ["telephone"]}
+{"message": "Merci pour le travail réalisé la semaine dernière, tout est parfait.", "intent": "autre", "manquant": []}
+{"message": "Bonjour, je vous envoie ma facture en pièce jointe.", "intent": "autre", "manquant": []}
+{"message": "Je suis commercial chez Pneus Express, pouvons-nous échanger ?", "intent": "autre", "manquant": []}
+{"message": "Bonjour, est-ce que le tarif de la vidange est valable aussi pour un SUV ? Je prendrais rdv samedi, 06 99 88 77 66, GH-222-IJ.", "intent": "rdv", "manquant": []}
+{"message": "Hello, rdv possible vendredi pour les freins ? CD-333-EF. Merci", "intent": "rdv", "manquant": ["contact"]}
+{"message": "Pas besoin de rendez-vous, je veux juste connaître le prix d'une vidange. Tel 06 12 12 12 12, AA-111-BB.", "intent": "devis", "manquant": []}
+{"message": "Mon véhicule fait un bruit étrange au freinage depuis hier, pouvez-vous regarder ? 06 22 33 44 55", "intent": "rdv", "manquant": ["prestation", "immatriculation", "jour"]}
+{"message": "Bonjour, je suis disponible lundi pour déposer la voiture, vous avez de la place ?", "intent": "rdv", "manquant": ["prestation", "immatriculation", "contact"]}

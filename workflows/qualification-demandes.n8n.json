@@ -1,0 +1,206 @@
+{
+  "name": "Qualification des demandes entrantes",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "Demande entrante",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "triage-demande",
+        "responseMode": "responseNode"
+      }
+    },
+    {
+      "id": "2",
+      "name": "Agent de qualification",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        0
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8000",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({message: $json.body.message}) }}"
+      }
+    },
+    {
+      "id": "3",
+      "name": "Urgence ?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.priorite }}",
+              "rightValue": "haute",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "4",
+      "name": "Alerter un humain",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        720,
+        -120
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "action",
+              "name": "action",
+              "type": "string",
+              "value": "a_traiter_maintenant"
+            },
+            {
+              "id": "brouillon",
+              "name": "brouillon",
+              "type": "string",
+              "value": "={{ $json.brouillon }}"
+            }
+          ]
+        },
+        "includeOtherFields": true
+      }
+    },
+    {
+      "id": "5",
+      "name": "Brouillon a valider",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        720,
+        120
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "action",
+              "name": "action",
+              "type": "string",
+              "value": "a_valider_avant_envoi"
+            },
+            {
+              "id": "brouillon",
+              "name": "brouillon",
+              "type": "string",
+              "value": "={{ $json.brouillon }}"
+            }
+          ]
+        },
+        "includeOtherFields": true
+      }
+    },
+    {
+      "id": "6",
+      "name": "Repondre",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        960,
+        0
+      ],
+      "parameters": {
+        "respondWith": "allIncomingItems"
+      }
+    }
+  ],
+  "connections": {
+    "Demande entrante": {
+      "main": [
+        [
+          {
+            "node": "Agent de qualification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agent de qualification": {
+      "main": [
+        [
+          {
+            "node": "Urgence ?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Urgence ?": {
+      "main": [
+        [
+          {
+            "node": "Alerter un humain",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Brouillon a valider",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Alerter un humain": {
+      "main": [
+        [
+          {
+            "node": "Repondre",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Brouillon a valider": {
+      "main": [
+        [
+          {
+            "node": "Repondre",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
